@@ -62,8 +62,12 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
         </div>
 
         <div className="p-4 border-b border-white/10 smooth-transition">
-          <div className="flex items-center gap-3">
-            <div className="flex-shrink-0 smooth-transition hover:scale-105">
+          <Link 
+            href="/" 
+            onClick={() => onClose()}
+            className="flex items-center gap-3 hover:bg-white/10 rounded-lg p-2 -m-2 smooth-transition group cursor-pointer"
+          >
+            <div className="flex-shrink-0 smooth-transition group-hover:scale-110">
               <img
                 src="/logo.png"
                 alt="RW 02 Rangkah Logo"
@@ -82,10 +86,10 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
               </svg>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-sm font-bold text-white smooth-transition">RW 02 Rangkah</h1>
-              <p className="text-xs text-white/70 smooth-transition">Panel Admin</p>
+              <h1 className="text-sm font-bold text-white smooth-transition group-hover:text-white/90">RW 02 Rangkah</h1>
+              <p className="text-xs text-white/70 smooth-transition group-hover:text-white/60">Panel Admin</p>
             </div>
-          </div>
+          </Link>
         </div>
 
         <nav className="flex-grow px-4 py-4 overflow-y-auto">

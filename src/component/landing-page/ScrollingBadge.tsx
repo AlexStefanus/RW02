@@ -12,7 +12,7 @@ const ScrollingBadge = () => {
       <div className="flex animate-scroll">
         {repeatedBadges.map((badge, index) => (
           <div key={index} className="flex items-center whitespace-nowrap text-xs md:text-sm font-semibold flex-shrink-0">
-            <span className="text-yellow-400 mx-4 md:mx-8">?</span>
+            <span className="text-yellow-400 mx-4 md:mx-8">⭐</span>
             <span className="mx-3 md:mx-4">{badge}</span>
           </div>
         ))}
