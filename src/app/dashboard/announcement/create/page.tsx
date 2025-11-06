@@ -100,7 +100,7 @@ const CreateAnnouncementPage = () => {
 
   return (
     <div className="flex flex-col min-h-full">
-      <PageHeader title="Tambah Pengumuman" subtitle="Buat pengumuman baru untuk desa" actions={headerActions} mounted={mounted} />
+      <PageHeader title="Tambah Pengumuman" subtitle="Buat pengumuman baru " actions={headerActions} mounted={mounted} />
 
       <div className={`app-content smooth-transition flex-1 ${mounted ? "smooth-reveal stagger-1" : "animate-on-load"}`}>
         <div className="bg-white app-card shadow-sm border border-gray-100">

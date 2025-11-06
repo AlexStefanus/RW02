@@ -38,7 +38,7 @@ const NewsCard = ({ news, index, mounted }: NewsCardProps) => {
     >
       <div className="aspect-video overflow-hidden">
         <img 
-          src={news.imageUrl || "/kantor_desa.jpg"} 
+          src={news.imageUrl || "/senam.png"} 
           alt={news.title} 
           className="w-full h-full object-cover group-hover:scale-105 smooth-transition" 
         />

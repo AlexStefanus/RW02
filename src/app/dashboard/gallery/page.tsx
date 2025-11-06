@@ -160,12 +160,12 @@ const GalleryPage = () => {
       render: (value: string) => (
         <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden">
           <img
-            src={value || "/kantor_desa.jpg"}
+            src={value || "/senam.png"}
             alt="Gallery"
             className="w-full h-full object-cover"
             onError={(e) => {
               const target = e.currentTarget as HTMLImageElement;
-              target.src = "/kantor_desa.jpg";
+              target.src = "/senam.png";
             }}
           />
         </div>

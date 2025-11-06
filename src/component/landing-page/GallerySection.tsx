@@ -66,7 +66,7 @@ const GallerySection = () => {
                   className="w-full h-full object-cover group-hover:scale-105 smooth-transition"
                   onError={(e) => {
                     const target = e.currentTarget as HTMLImageElement;
-                    target.src = "/kantor_desa.jpg";
+                    target.src = "/senam.png";
                   }}
                 />
               </div>
@@ -84,7 +84,7 @@ const GallerySection = () => {
                   className="w-full h-full object-cover group-hover:scale-105 smooth-transition"
                   onError={(e) => {
                     const target = e.currentTarget as HTMLImageElement;
-                    target.src = "/kantor_desa.jpg";
+                    target.src = "/senam.png";
                   }}
                 />
               </div>

@@ -14,7 +14,7 @@ const ForgotPasswordPage = () => {
 
   return (
     <ProtectedRoute requireAuth={false}>
-      <AuthLayout imageSrc="/kantor_desa.jpg" title="Pulihkan akses ke panel admin RW 02 Rangkah dengan mudah" subtitle="Reset Password" mounted={mounted}>
+      <AuthLayout imageSrc="/senam.png" title="Pulihkan akses ke panel admin RW 02 Rangkah dengan mudah" subtitle="Reset Password" mounted={mounted}>
         <ForgotPasswordHeader mounted={mounted} />
 
         {message && <SuccessMessage message={message} />}

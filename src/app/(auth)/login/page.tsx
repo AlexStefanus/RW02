@@ -23,7 +23,7 @@ const LoginPage = () => {
   return (
     <ProtectedRoute requireAuth={false}>
       <AuthLayout
-        imageSrc="/kantor_desa.jpg"
+        imageSrc="/senam.png"
         title="Mulai kelola dan kembangkan website RW 02 Rangkah dengan mudah melalui panel admin"
         subtitle="Panel Admin"
         mounted={mounted}
