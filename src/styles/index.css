@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@import "./base.css";
+
+@import "./components/layout.css";
+@import "./components/forms.css";
+@import "./components/navigation.css";
+@import "./components/structure.css";
+
+@import "./animations/keyframes.css";
+
+@import "./responsive.css";
