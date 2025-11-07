@@ -27,7 +27,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         />
 
         <main className="dashboard-main flex-grow lg:ml-0 w-full min-w-0 flex flex-col overflow-hidden">
-          {/* Mobile Header */}
           <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-2.5 animate-slide-in-left flex-shrink-0">
             <div className="flex items-center justify-between max-w-full">
               <button onClick={() => setSidebarOpen(true)} className="text-gray-600 hover:text-gray-900 smooth-transition p-1 -ml-1 hover:scale-110 active:scale-95 hover:bg-gray-100 rounded-lg" aria-label="Open menu">
@@ -39,7 +38,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
 
           <div className="dashboard-content flex-1 overflow-y-auto relative">
-            {/* Desktop Hamburger Button - Top Left Corner */}
             {sidebarCollapsed && (
               <button
                 onClick={handleToggleSidebar}

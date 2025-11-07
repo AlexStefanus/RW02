@@ -81,7 +81,6 @@ export const fetchVisitorStats = async () => {
   const today = now.toISOString().split("T")[0];
   const todayCount = data.dailyVisits?.[today] || 0;
 
-  // Calculate monthly visitors
   let monthlyCount = 0;
   const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
   for (let d = new Date(startOfMonth); d <= now; d.setDate(d.getDate() + 1)) {

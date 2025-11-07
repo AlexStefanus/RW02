@@ -1,7 +1,6 @@
 import { supabase } from "./supabase";
 import { User as SupabaseUser } from "@supabase/supabase-js";
 
-// Type alias for compatibility
 export type User = SupabaseUser;
 
 export interface UserProfile {

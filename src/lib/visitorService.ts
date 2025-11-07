@@ -44,7 +44,6 @@ export const getVisitorStats = async (): Promise<VisitorStats | null> => {
       return data as VisitorStats;
     }
 
-    // Initialize default stats
     const today = new Date();
     const initialDailyVisits: Record<string, number> = {};
 

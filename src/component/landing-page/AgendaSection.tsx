@@ -39,7 +39,7 @@ const AgendaSection = () => {
     try {
       setAgendasLoading(true);
       const agendas = await getUpcomingAgendas();
-      setCustomAgendas(agendas.slice(0, 5)); // Limit to 5 upcoming agendas
+      setCustomAgendas(agendas.slice(0, 5));
     } catch (error) {
       console.error("Error loading custom agendas:", error);
     } finally {
@@ -109,7 +109,6 @@ const AgendaSection = () => {
     }
   };
 
-  // Convert custom agendas to AgendaItem format
   const customAgendaItems: AgendaItem[] = customAgendas.map(
     (agenda): AgendaItem => {
       const daysFromToday = calculateDaysFromToday(agenda.date);
@@ -128,7 +127,6 @@ const AgendaSection = () => {
     }
   );
 
-  // Convert holidays to AgendaItem format
   const holidayItems: AgendaItem[] = holidays.map(
     (holiday, index): AgendaItem => ({
       id: `holiday-${index}`,
@@ -143,7 +141,6 @@ const AgendaSection = () => {
     })
   );
 
-  // Combine and sort by date (custom agendas first, then holidays)
   const agendaItems: AgendaItem[] = [...customAgendaItems, ...holidayItems].slice(0, 6);
 
   return (

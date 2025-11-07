@@ -2,7 +2,7 @@ import { supabase } from "./supabase";
 
 export interface StructureSettings {
   id: string;
-  displayMode: "image" | "chart"; // "image" for static image (struktur.png), "chart" for organizational chart
+  displayMode: "image" | "chart";
   updatedAt: string;
   updatedBy: string;
 }
@@ -18,7 +18,6 @@ export const getStructureSettings = async (): Promise<StructureSettings | null> 
     if (error) {
       console.log("[getStructureSettings] Error:", error);
       if (error.code === "PGRST116") {
-        // No settings found, return default
         console.log("[getStructureSettings] No settings found, returning default");
         return {
           id: "",
@@ -46,7 +45,6 @@ export const updateStructureSettings = async (
     console.log("[updateStructureSettings] Saving displayMode:", displayMode);
     const now = new Date().toISOString();
 
-    // Check if settings exist
     console.log("[updateStructureSettings] Checking for existing settings...");
     const { data: existing, error: selectError } = await supabase
       .from("structure_settings")
@@ -56,7 +54,6 @@ export const updateStructureSettings = async (
     console.log("[updateStructureSettings] Existing settings:", existing, "Error:", selectError);
 
     if (existing) {
-      // Update existing
       console.log("[updateStructureSettings] Updating existing record with ID:", existing.id);
       const { error } = await supabase
         .from("structure_settings")
@@ -73,7 +70,6 @@ export const updateStructureSettings = async (
       }
       console.log("[updateStructureSettings] Update successful!");
     } else {
-      // Insert new
       console.log("[updateStructureSettings] Inserting new record");
       const { error } = await supabase
         .from("structure_settings")

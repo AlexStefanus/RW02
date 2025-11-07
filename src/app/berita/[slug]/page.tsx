@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
@@ -175,7 +175,6 @@ const BeritaDetailPage = () => {
     <div className={`min-h-screen flex flex-col smooth-transition ${mounted ? "smooth-reveal" : "animate-on-load"}`}>
       <Header />
 
-      {/* Breadcrumb */}
       <nav className="bg-gray-50 py-4">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -192,16 +191,13 @@ const BeritaDetailPage = () => {
         </div>
       </nav>
 
-      {/* Article Content */}
       <main className="flex-grow bg-white py-8">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Back Button */}
           <Link href="/berita" className="inline-flex items-center gap-2 text-[#00a753] hover:text-[#008c45] transition-colors mb-6">
             <FiArrowLeft size={16} />
             Kembali ke Berita
           </Link>
 
-          {/* Article Header */}
           <header className="mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">{article.title}</h1>
 
@@ -220,7 +216,6 @@ const BeritaDetailPage = () => {
               </div>
             </div>
 
-            {/* Featured Image */}
             {article.imageUrl && (
               <div className="aspect-video w-full overflow-hidden rounded-lg mb-6">
                 <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
@@ -228,7 +223,6 @@ const BeritaDetailPage = () => {
             )}
           </header>
 
-          {/* Article Body */}
           <div className="prose prose-lg max-w-none">
             <div
               className="article-content text-justify leading-relaxed"
@@ -238,7 +232,6 @@ const BeritaDetailPage = () => {
             />
           </div>
 
-          {/* Article Footer */}
           <footer className="mt-12 pt-8 border-t border-gray-200">
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600">
@@ -252,7 +245,6 @@ const BeritaDetailPage = () => {
           </footer>
         </article>
 
-        {/* Related Articles */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Berita Terkait</h2>
 
@@ -266,15 +258,10 @@ const BeritaDetailPage = () => {
                     <Link key={related.id} href={`/berita/${related.slug}`} className="block">
                       <div className="hover:bg-gray-50 transition-colors cursor-pointer group">
                         <div className="flex items-center">
-                          {/* Featured Image */}
-
-                          {/* Content */}
                           <div className="flex-1 p-6 flex items-center justify-between">
                             <div className="flex-1 min-w-0">
-                              {/* Title */}
                               <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#00a753] transition-colors">{related.title}</h3>
 
-                              {/* Meta Info */}
                               <div className="flex items-center gap-4 text-sm text-gray-600">
                                 <div className="flex items-center gap-1">
                                   <FiUser size={14} />
@@ -287,7 +274,6 @@ const BeritaDetailPage = () => {
                               </div>
                             </div>
 
-                            {/* Arrow Icon */}
                             <div className="flex-shrink-0 ml-4">
                               <svg className="w-5 h-5 text-gray-400 group-hover:text-[#00a753] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

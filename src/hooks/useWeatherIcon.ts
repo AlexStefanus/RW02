@@ -25,33 +25,24 @@ export const useWeatherIcon = () => {
 
     const descLower = description?.toLowerCase() || "";
     
-    // Thunderstorm
     if (iconCode.startsWith("11")) return WiThunderstorm;
-    
-    // Drizzle
     if (iconCode.startsWith("09") || iconCode.startsWith("10")) {
       if (descLower.includes("light")) return FiCloudDrizzle;
       return WiRain;
     }
     
-    // Rain
     if (iconCode.startsWith("10") || iconCode.startsWith("09")) return FiCloudRain;
     
-    // Snow
     if (iconCode.startsWith("13")) return FiCloudSnow;
     
-    // Atmosphere (fog, mist, etc)
     if (iconCode.startsWith("50")) return WiFog;
     
-    // Clear
     if (iconCode === "01d") return WiDaySunny;
     if (iconCode === "01n") return WiNightClear;
     
-    // Few clouds
     if (iconCode === "02d") return WiDayCloudy;
     if (iconCode === "02n") return WiNightAltCloudy;
     
-    // Scattered/broken/overcast clouds
     if (iconCode.startsWith("03") || iconCode.startsWith("04")) return WiCloudy;
     
     return FiSun;

@@ -33,7 +33,6 @@ const SmartBerkahSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* SMART Section */}
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg p-8 border border-green-100">
             <div className="flex justify-center mb-6">
               <div className="bg-yellow-400 text-gray-900 font-bold text-xl md:text-2xl px-8 py-3 rounded-full shadow-md">
@@ -61,7 +60,6 @@ const SmartBerkahSection = () => {
             </div>
           </div>
 
-          {/* BERKAH Section */}
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg p-8 border border-green-100">
             <div className="flex justify-center mb-6">
               <div className="bg-yellow-400 text-gray-900 font-bold text-xl md:text-2xl px-8 py-3 rounded-full shadow-md">

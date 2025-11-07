@@ -8,11 +8,8 @@ interface OrganizationalChartProps {
 }
 
 const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ structures }) => {
-  // Sort structures by order
   const sortedStructures = [...structures].sort((a, b) => a.order - b.order);
 
-  // Group structures by hierarchy level based on order
-  // Assuming: 1-2 = Top level, 3-6 = Second level, 7+ = Third level
   const topLevel = sortedStructures.filter(s => s.order <= 2);
   const secondLevel = sortedStructures.filter(s => s.order >= 3 && s.order <= 6);
   const thirdLevel = sortedStructures.filter(s => s.order >= 7);
@@ -56,7 +53,6 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ structures })
   return (
     <div className="w-full py-8 px-4 bg-gradient-to-br from-orange-100 via-orange-50 to-yellow-50 rounded-xl">
       <div className="flex flex-col items-center space-y-6">
-        {/* Top Level - Ketua & Wakil */}
         {topLevel.length > 0 && (
           <div className="flex flex-col items-center">
             <div className="flex items-start justify-center gap-8 md:gap-16">
@@ -82,7 +78,6 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ structures })
           </div>
         )}
 
-        {/* Second Level - Sekretaris & Bendahara */}
         {secondLevel.length > 0 && (
           <div className="flex flex-col items-center w-full">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 justify-items-center max-w-5xl">
@@ -104,7 +99,6 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ structures })
           </div>
         )}
 
-        {/* Third Level - Divisi & RT/RW */}
         {thirdLevel.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 md:gap-6 justify-items-center max-w-7xl">
             {thirdLevel.map((person) => (

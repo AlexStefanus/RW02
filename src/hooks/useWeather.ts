@@ -12,7 +12,6 @@ export const useWeather = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fungsi untuk mengkapitalisasi huruf pertama setiap kata
   const capitalizeWords = (text: string): string => {
     return text
       .split(' ')
@@ -24,7 +23,6 @@ export const useWeather = () => {
     const fetchWeather = async () => {
       try {
         setLoading(true);
-        // Koordinat RW 02 Rangkah, Surabaya
         const lat = -7.2469;
         const lon = 112.7654;
         const apiKey = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
@@ -60,7 +58,6 @@ export const useWeather = () => {
       } catch (err) {
         console.error("Weather fetch error:", err);
         setError(err instanceof Error ? err.message : "Failed to fetch weather");
-        // Set fallback data jika error
         setWeather({
           temperature: 28,
           description: "Cerah berawan",
@@ -73,7 +70,6 @@ export const useWeather = () => {
     };
 
     fetchWeather();
-    // Refresh setiap 30 menit
     const interval = setInterval(fetchWeather, 30 * 60 * 1000);
 
     return () => clearInterval(interval);

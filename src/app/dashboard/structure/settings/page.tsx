@@ -120,13 +120,11 @@ const StructureSettingsPage = () => {
 
         <div className="bg-white app-card shadow-sm border border-gray-100">
           <div className="space-y-6">
-            {/* Display Mode Selection */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">
                 Mode Tampilan <span className="text-red-500">*</span>
               </label>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Image Mode */}
                 <button
                   type="button"
                   onClick={() => setDisplayMode("image")}
@@ -149,7 +147,6 @@ const StructureSettingsPage = () => {
                   </div>
                 </button>
 
-                {/* Chart Mode */}
                 <button
                   type="button"
                   onClick={() => setDisplayMode("chart")}

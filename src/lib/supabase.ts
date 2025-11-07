@@ -20,7 +20,6 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   },
 });
 
-// Export aliases for backward compatibility during migration
 export const db = supabase;
 export const auth = supabase.auth;
 export const storage = supabase.storage;

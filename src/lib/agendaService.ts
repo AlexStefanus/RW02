@@ -23,7 +23,6 @@ export interface UpdateAgendaInput {
   location?: string;
 }
 
-// Get all agendas
 export const getAllAgendas = async (): Promise<Agenda[]> => {
   const { data, error } = await supabase
     .from("agenda")
@@ -38,7 +37,6 @@ export const getAllAgendas = async (): Promise<Agenda[]> => {
   return data || [];
 };
 
-// Get upcoming agendas (from today onwards)
 export const getUpcomingAgendas = async (): Promise<Agenda[]> => {
   const today = new Date().toISOString();
   
@@ -56,7 +54,6 @@ export const getUpcomingAgendas = async (): Promise<Agenda[]> => {
   return data || [];
 };
 
-// Get agenda by ID
 export const getAgendaById = async (id: string): Promise<Agenda | null> => {
   const { data, error } = await supabase
     .from("agenda")
@@ -72,7 +69,6 @@ export const getAgendaById = async (id: string): Promise<Agenda | null> => {
   return data;
 };
 
-// Create new agenda
 export const createAgenda = async (input: CreateAgendaInput): Promise<Agenda> => {
   const { data, error } = await supabase
     .from("agenda")
@@ -88,7 +84,6 @@ export const createAgenda = async (input: CreateAgendaInput): Promise<Agenda> =>
   return data;
 };
 
-// Update agenda
 export const updateAgenda = async (
   id: string,
   input: UpdateAgendaInput
@@ -108,7 +103,6 @@ export const updateAgenda = async (
   return data;
 };
 
-// Delete agenda
 export const deleteAgenda = async (id: string): Promise<void> => {
   const { error } = await supabase.from("agenda").delete().eq("id", id);
 
@@ -118,7 +112,6 @@ export const deleteAgenda = async (id: string): Promise<void> => {
   }
 };
 
-// Get agendas count
 export const getAgendasCount = async (): Promise<number> => {
   const { count, error } = await supabase
     .from("agenda")
@@ -132,7 +125,6 @@ export const getAgendasCount = async (): Promise<number> => {
   return count || 0;
 };
 
-// Get upcoming agendas count
 export const getUpcomingAgendasCount = async (): Promise<number> => {
   const today = new Date().toISOString();
   

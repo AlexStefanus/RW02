@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
@@ -198,7 +198,6 @@ const PengumumanDetailPage = () => {
         url: window.location.href,
       });
     } else {
-      // Fallback for browsers that don't support Web Share API
       navigator.clipboard.writeText(window.location.href);
       alert("Link berhasil disalin!");
     }
@@ -218,7 +217,6 @@ const PengumumanDetailPage = () => {
     <div className={`min-h-screen flex flex-col smooth-transition ${mounted ? "smooth-reveal" : "animate-on-load"}`}>
       <Header />
 
-      {/* Breadcrumb */}
       <nav className="bg-gray-50 py-4">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -235,27 +233,21 @@ const PengumumanDetailPage = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
       <main className="flex-grow bg-white py-8">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Back Button */}
           <Link href="/pengumuman" className="inline-flex items-center gap-2 text-[#00a753] hover:text-[#008c45] transition-colors mb-6">
             <FiArrowLeft size={16} />
             Kembali ke Pengumuman
           </Link>
 
-          {/* Announcement Header */}
           <header className="mb-8">
-            {/* Priority Badge and Status */}
             <div className="mb-4 flex items-center gap-3">
               <span className={`inline-flex items-center gap-1 px-3 py-1 text-xs font-medium rounded-full ${getPriorityColor(announcement.priority)}`}>{getPriorityLabel(announcement.priority)}</span>
               <span className={`inline-flex items-center px-3 py-1 text-xs font-medium rounded-full ${statusInfo.color}`}>{statusInfo.label}</span>
             </div>
 
-            {/* Title */}
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">{announcement.title}</h1>
 
-            {/* Meta Info */}
             <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-[#00a753] rounded-full flex items-center justify-center">
@@ -278,7 +270,6 @@ const PengumumanDetailPage = () => {
             </div>
           </header>
 
-          {/* Announcement Body */}
           <div className="prose prose-lg max-w-none mb-8">
             {announcement.content.split("\n").map((paragraph, index) => (
               <p key={index} className="mb-4 text-gray-700 leading-relaxed text-justify">
@@ -287,7 +278,6 @@ const PengumumanDetailPage = () => {
             ))}
           </div>
 
-          {/* Important Notice */}
           <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
             <div className="flex items-start gap-3">
               <FiAlertCircle className="w-5 h-5 text-[#00a753] flex-shrink-0 mt-0.5" />
@@ -300,7 +290,6 @@ const PengumumanDetailPage = () => {
             </div>
           </div>
 
-          {/* Article Footer */}
           <footer className="pt-8 border-t border-gray-200">
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600">
@@ -314,7 +303,6 @@ const PengumumanDetailPage = () => {
           </footer>
         </article>
 
-        {/* Related Announcements */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Pengumuman Terkait</h2>
 
@@ -328,22 +316,17 @@ const PengumumanDetailPage = () => {
                     <Link key={related.id} href={`/pengumuman/${related.slug}`} className="block">
                       <div className="hover:bg-gray-50 transition-colors cursor-pointer group">
                         <div className="flex items-center">
-                          {/* Content */}
                           <div className="flex-1 p-4 flex items-center justify-between">
                             <div className="flex-1 min-w-0">
-                              {/* Priority Badge */}
                               <div className="mb-3">
                                 <span className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${getPriorityColor(related.priority)}`}>{getPriorityLabel(related.priority)}</span>
                               </div>
 
-                              {/* Title */}
                               <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#00a753] transition-colors">{related.title}</h3>
 
-                              {/* Date */}
                               <p className="text-sm text-gray-600">{formatDate(related.createdAt)}</p>
                             </div>
 
-                            {/* Arrow Icon */}
                             <div className="flex-shrink-0 ml-4">
                               <svg className="w-5 h-5 text-gray-400 group-hover:text-[#00a753] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

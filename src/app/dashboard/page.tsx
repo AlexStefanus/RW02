@@ -61,9 +61,7 @@ const DashboardPage = () => {
       />
 
       <div className={`app-content smooth-transition flex-1 ${mounted ? "smooth-reveal stagger-1" : "animate-on-load"}`}>
-        {/* Stats Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {/* Visitors Card */}
           <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-all">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -75,7 +73,6 @@ const DashboardPage = () => {
             <p className="text-blue-100 text-sm">Pengunjung</p>
           </div>
 
-          {/* Articles Card */}
           <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-all">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -87,7 +84,6 @@ const DashboardPage = () => {
             <p className="text-green-100 text-sm">Berita Published</p>
           </div>
 
-          {/* Announcements Card */}
           <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-all">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -99,7 +95,6 @@ const DashboardPage = () => {
             <p className="text-purple-100 text-sm">Pengumuman</p>
           </div>
 
-          {/* Page Views Card */}
           <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-all">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -112,20 +107,15 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        {/* Main Content Grid */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
-          {/* Left Column - Charts */}
           <div className="xl:col-span-2 space-y-6">
             <VisitorStatsCard />
             <VisitorChart type="line" timeRange="7days" />
           </div>
 
-          {/* Right Column - Summary */}
           <div className="xl:col-span-1 space-y-6">
-            {/* Recent Activity */}
             <RecentActivity />
 
-            {/* Summary Stats */}
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-sm border border-gray-200 p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                 <span className="w-1 h-6 bg-[#00a753] rounded-full"></span>
