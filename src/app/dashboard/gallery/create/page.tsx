@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -16,11 +16,8 @@ const CreateGalleryPage = () => {
 
   const [formData, setFormData] = useState({
     title: "",
-    description: "",
     image: null as File | null,
-    category: "umum",
     isActive: true,
-    order: 0,
   });
 
   const [success, setSuccess] = useState<string | null>(null);
@@ -33,7 +30,7 @@ const CreateGalleryPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleFormChange = (field: string, value: string | File | boolean | number) => {
+  const handleFormChange = (field: string, value: string | File | boolean) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -75,11 +72,8 @@ const CreateGalleryPage = () => {
 
     const result = await create({
       title: formData.title,
-      description: formData.description,
       image: formData.image,
-      category: formData.category,
       isActive: formData.isActive,
-      order: formData.order,
       createdBy: user.id,
     });
 

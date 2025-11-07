@@ -83,9 +83,7 @@ export const useGalleryImages = () => {
       const { images: allImages } = await getGalleryImages(1000);
       const filtered = allImages.filter(
         (image) =>
-          image.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (image.description && image.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (image.category && image.category.toLowerCase().includes(searchTerm.toLowerCase()))
+          image.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
       setImages(filtered);

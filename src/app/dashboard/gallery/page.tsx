@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -138,20 +138,6 @@ const GalleryPage = () => {
     );
   };
 
-  const getCategoryBadge = (category: string) => {
-    const categoryColors: { [key: string]: string } = {
-      umum: "bg-gray-100 text-gray-800",
-      kegiatan: "bg-green-100 text-green-800",
-      fasilitas: "bg-purple-100 text-purple-800",
-      wisata: "bg-yellow-100 text-yellow-800",
-      pembangunan: "bg-orange-100 text-orange-800",
-    };
-
-    const colorClass = categoryColors[category] || "bg-gray-100 text-gray-800";
-
-    return <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colorClass}`}>{category.charAt(0).toUpperCase() + category.slice(1)}</span>;
-  };
-
   const columns = [
     {
       key: "imageUrl",
@@ -175,16 +161,6 @@ const GalleryPage = () => {
       key: "title",
       label: "Judul",
       className: "font-medium text-gray-900",
-    },
-    {
-      key: "category",
-      label: "Kategori",
-      render: (value: string) => getCategoryBadge(value),
-    },
-    {
-      key: "order",
-      label: "Urutan",
-      className: "text-center",
     },
     {
       key: "isActive",
@@ -221,7 +197,7 @@ const GalleryPage = () => {
             title="Daftar Gambar Galeri"
             searchTerm={searchTerm}
             onSearchChange={setSearchTerm}
-            searchPlaceholder="Cari berdasarkan judul, deskripsi, atau kategori..."
+            searchPlaceholder="Cari berdasarkan judul..."
             statusFilter={statusFilter}
             onStatusFilterChange={setStatusFilter}
             statusOptions={statusOptions}

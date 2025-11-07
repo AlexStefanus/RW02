@@ -69,13 +69,13 @@ export const uploadArticleImage = async (file: File, articleId?: string): Promis
     const imagePath = `articles/${articleId || "temp"}/${fileName}`;
 
     const { data, error } = await supabase.storage
-      .from("public")
+      .from("uploads")
       .upload(imagePath, file);
 
     if (error) throw error;
 
     const { data: urlData } = supabase.storage
-      .from("public")
+      .from("uploads")
       .getPublicUrl(imagePath);
 
     refreshStorageStats();
@@ -90,7 +90,7 @@ export const uploadArticleImage = async (file: File, articleId?: string): Promis
 export const deleteArticleImage = async (imagePath: string): Promise<void> => {
   try {
     const { error } = await supabase.storage
-      .from("public")
+      .from("uploads")
       .remove([imagePath]);
 
     if (error) throw error;

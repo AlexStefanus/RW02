@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useActiveGalleryImages } from "@/hooks/useGallery";
@@ -11,7 +11,6 @@ import { LoadingSpinner } from "@/component/common/LoadingStates";
 const GalleryPage = () => {
   const [mounted, setMounted] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -29,19 +28,9 @@ const GalleryPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const categories = [
-    { value: "all", label: "Semua" },
-    { value: "umum", label: "Umum" },
-    { value: "kegiatan", label: "Kegiatan" },
-    { value: "fasilitas", label: "Fasilitas" },
-    { value: "wisata", label: "Wisata" },
-    { value: "pembangunan", label: "Pembangunan" },
-  ];
-
   const filteredImages = images.filter((image) => {
-    const matchesCategory = selectedCategory === "all" || image.category === selectedCategory;
-    const matchesSearch = searchTerm === "" || image.title.toLowerCase().includes(searchTerm.toLowerCase()) || (image.description && image.description.toLowerCase().includes(searchTerm.toLowerCase()));
-    return matchesCategory && matchesSearch;
+    const matchesSearch = searchTerm === "" || image.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesSearch;
   });
 
   const totalPages = Math.ceil(filteredImages.length / itemsPerPage);
@@ -61,16 +50,15 @@ const GalleryPage = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedCategory, searchTerm]);
+  }, [searchTerm]);
 
   useEffect(() => {
     console.log("Filtered images:", {
-      selectedCategory,
       searchTerm,
       filteredImages,
       filteredLength: filteredImages.length,
     });
-  }, [filteredImages, selectedCategory, searchTerm]);
+  }, [filteredImages, searchTerm]);
 
   const openImageModal = (image: any) => {
     setSelectedImage(image.imageUrl);
@@ -133,26 +121,6 @@ const GalleryPage = () => {
                 </div>
               </div>
 
-              <div className={`mb-8 md:mb-12 smooth-transition ${mounted ? "smooth-reveal stagger-3" : "animate-on-load"}`}>
-                <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-                  {categories.map((category) => {
-                    const categoryCount = category.value === "all" ? images.length : images.filter((img) => img.category === category.value).length;
-                    return (
-                      <button
-                        key={category.value}
-                        onClick={() => setSelectedCategory(category.value)}
-                        className={`px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium text-sm md:text-base transition-colors flex items-center gap-2 ${
-                          selectedCategory === category.value ? "bg-[#00a753] text-white" : "bg-gray-50 text-gray-700 hover:bg-gray-100"
-                        }`}
-                      >
-                        {category.label}
-                        {categoryCount > 0 && <span className={`text-xs px-2 py-1 rounded-full ${selectedCategory === category.value ? "bg-white/20 text-white" : "bg-gray-200 text-gray-600"}`}>{categoryCount}</span>}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
               {loading ? (
                 <div className="flex justify-center py-12">
                   <LoadingSpinner />
@@ -206,19 +174,13 @@ const GalleryPage = () => {
                       </svg>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {selectedCategory === "all" ? "Galeri Kosong" : `Tidak ada gambar untuk kategori "${categories.find((c) => c.value === selectedCategory)?.label}"`}
-                      {searchTerm && ` dengan kata kunci "${searchTerm}"`}
+                      {searchTerm ? `Tidak ada gambar dengan kata kunci "${searchTerm}"` : "Galeri Kosong"}
                     </h3>
-                    <p className="text-gray-600 mb-4">{selectedCategory === "all" && !searchTerm ? "Belum ada gambar yang ditambahkan ke galeri." : "Coba ubah filter atau kata kunci pencarian."}</p>
+                    <p className="text-gray-600 mb-4">{!searchTerm ? "Belum ada gambar yang ditambahkan ke galeri." : "Coba ubah kata kunci pencarian."}</p>
                     <div className="flex flex-wrap gap-2 justify-center">
                       {searchTerm && (
                         <button onClick={() => setSearchTerm("")} className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors text-sm">
                           Hapus Pencarian
-                        </button>
-                      )}
-                      {selectedCategory !== "all" && (
-                        <button onClick={() => setSelectedCategory("all")} className="bg-[#00a753] text-white px-4 py-2 rounded hover:bg-[#008c45] transition-colors text-sm">
-                          Lihat Semua
                         </button>
                       )}
                     </div>
@@ -239,10 +201,6 @@ const GalleryPage = () => {
                         </div>
                         <div className="p-4">
                           <h3 className="font-semibold text-gray-900 mb-2 line-clamp-1">{image.title}</h3>
-                          {image.description && <p className="text-sm text-gray-600 line-clamp-2">{image.description}</p>}
-                          <div className="mt-2">
-                            <span className="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded capitalize">{categories.find((c) => c.value === image.category)?.label || image.category}</span>
-                          </div>
                         </div>
                       </div>
                     ))}
@@ -284,12 +242,6 @@ const GalleryPage = () => {
 
               <div className="md:w-1/3 p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{selectedImageData.title}</h3>
-
-                {selectedImageData.description && <p className="text-gray-600 mb-4">{selectedImageData.description}</p>}
-
-                <div className="mb-4">
-                  <span className="inline-block px-3 py-1 text-sm bg-[#00a753] text-white rounded-full">{categories.find((c) => c.value === selectedImageData.category)?.label || selectedImageData.category}</span>
-                </div>
 
                 {selectedImageData.createdAt && (
                   <p className="text-sm text-gray-500">

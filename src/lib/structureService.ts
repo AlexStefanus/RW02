@@ -56,13 +56,13 @@ const uploadStructureImage = async (file: File, structureId?: string): Promise<{
     const imagePath = `structures/${fileName}`;
 
     const { data, error } = await supabase.storage
-      .from("public")
+      .from("uploads")
       .upload(imagePath, file, { upsert: true });
 
     if (error) throw error;
 
     const { data: urlData } = supabase.storage
-      .from("public")
+      .from("uploads")
       .getPublicUrl(imagePath);
 
     refreshStorageStats();
@@ -80,7 +80,7 @@ const uploadStructureImage = async (file: File, structureId?: string): Promise<{
 const deleteStructureImage = async (imagePath: string): Promise<void> => {
   try {
     const { error } = await supabase.storage
-      .from("public")
+      .from("uploads")
       .remove([imagePath]);
 
     if (error) throw error;

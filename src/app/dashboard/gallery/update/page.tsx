@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -20,12 +20,9 @@ const UpdateGalleryPage = () => {
 
   const [formData, setFormData] = useState({
     title: "",
-    description: "",
     imageUrl: "",
     image: null as File | null,
-    category: "umum",
     isActive: true,
-    order: 0,
   });
 
   const [success, setSuccess] = useState<string | null>(null);
@@ -42,17 +39,14 @@ const UpdateGalleryPage = () => {
     if (image) {
       setFormData({
         title: image.title,
-        description: image.description || "",
         imageUrl: image.imageUrl,
         image: null,
-        category: image.category || "umum",
         isActive: image.isActive,
-        order: image.order,
       });
     }
   }, [image]);
 
-  const handleFormChange = (field: string, value: string | File | boolean | number) => {
+  const handleFormChange = (field: string, value: string | File | boolean) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -94,10 +88,7 @@ const UpdateGalleryPage = () => {
 
     const updateData: any = {
       title: formData.title,
-      description: formData.description,
-      category: formData.category,
       isActive: formData.isActive,
-      order: formData.order,
       updatedBy: user.id,
     };
 

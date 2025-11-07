@@ -42,7 +42,7 @@ export const getStorageStats = async (): Promise<StorageStats> => {
 
 const calculateFolderSize = async (folderPath: string): Promise<{ totalSize: number; fileCount: number }> => {
   try {
-    const { data, error } = await supabase.storage.from("public").list(folderPath, {
+    const { data, error } = await supabase.storage.from("uploads").list(folderPath, {
       limit: 1000,
       offset: 0,
     });

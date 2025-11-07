@@ -1,20 +1,15 @@
-﻿import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FiUpload, FiX, FiImage, FiAlertTriangle } from "react-icons/fi";
 import FormInput from "@/component/common/FormInput";
-import FormTextarea from "@/component/common/FormTextarea";
-import FormSelect from "@/component/common/FormSelect";
 import { useStorageValidation } from "@/hooks/useStorage";
 
 interface GalleryFormProps {
   formData?: {
     title?: string;
-    description?: string;
     imageUrl?: string;
-    category?: string;
     isActive?: boolean;
-    order?: number;
   };
-  onChange?: (field: string, value: string | File | boolean | number) => void;
+  onChange?: (field: string, value: string | File | boolean) => void;
   onStorageError?: (message: string) => void;
   isEditing?: boolean;
   loading?: boolean;
@@ -33,15 +28,7 @@ const GalleryForm = ({ formData = {}, onChange, onStorageError, isEditing = fals
     }
   }, [formData.imageUrl, isEditing]);
 
-  const categoryOptions = [
-    { value: "umum", label: "Umum" },
-    { value: "kegiatan", label: "Kegiatan" },
-    { value: "fasilitas", label: "Fasilitas" },
-    { value: "wisata", label: "Wisata" },
-    { value: "pembangunan", label: "Pembangunan" },
-  ];
-
-  const handleChange = (field: string, value: string | File | boolean | number) => {
+  const handleChange = (field: string, value: string | File | boolean) => {
     if (onChange) {
       onChange(field, value);
     }
@@ -239,30 +226,6 @@ const GalleryForm = ({ formData = {}, onChange, onStorageError, isEditing = fals
 
         <div className="space-y-6">
           <FormInput label="Judul" id="title" name="title" value={formData.title || ""} onChange={(e) => handleChange("title", e.target.value)} placeholder="Masukkan judul gambar..." required disabled={loading} />
-
-          <FormTextarea
-            label="Deskripsi"
-            id="description"
-            name="description"
-            value={formData.description || ""}
-            onChange={(e) => handleChange("description", e.target.value)}
-            placeholder="Masukkan deskripsi gambar..."
-            rows={4}
-            disabled={loading}
-          />
-
-          <FormSelect label="Kategori" id="category" name="category" value={formData.category || "umum"} onChange={(e) => handleChange("category", e.target.value)} options={categoryOptions} disabled={loading} />
-
-          <FormInput
-            label="Urutan"
-            id="order"
-            name="order"
-            type="text"
-            value={formData.order?.toString() || "0"}
-            onChange={(e) => handleChange("order", parseInt(e.target.value) || 0)}
-            placeholder="Masukkan urutan gambar..."
-            disabled={loading}
-          />
 
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">Status</label>

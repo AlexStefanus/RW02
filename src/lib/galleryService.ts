@@ -16,12 +16,9 @@ const refreshStorageStats = () => {
 export interface GalleryImage {
   id: string;
   title: string;
-  description?: string;
   imageUrl: string;
   imagePath: string;
-  category?: string;
   isActive: boolean;
-  order: number;
   createdAt: string;
   updatedAt: string;
   createdBy: string;
@@ -30,21 +27,15 @@ export interface GalleryImage {
 
 export interface CreateGalleryImageData {
   title: string;
-  description?: string;
   image: File;
-  category?: string;
   isActive: boolean;
-  order: number;
   createdBy: string;
 }
 
 export interface UpdateGalleryImageData {
   title?: string;
-  description?: string;
   image?: File;
-  category?: string;
   isActive?: boolean;
-  order?: number;
   updatedBy: string;
 }
 
@@ -59,13 +50,13 @@ export const uploadGalleryImage = async (file: File, imageId?: string): Promise<
     const imagePath = `gallery/${imageId || "temp"}_${fileName}`;
 
     const { data, error } = await supabase.storage
-      .from("public")
+      .from("uploads")
       .upload(imagePath, file);
 
     if (error) throw error;
 
     const { data: urlData } = supabase.storage
-      .from("public")
+      .from("uploads")
       .getPublicUrl(imagePath);
 
     refreshStorageStats();
@@ -83,7 +74,7 @@ export const uploadGalleryImage = async (file: File, imageId?: string): Promise<
 export const deleteGalleryImage = async (imagePath: string): Promise<void> => {
   try {
     const { error } = await supabase.storage
-      .from("public")
+      .from("uploads")
       .remove([imagePath]);
 
     if (error) throw error;
@@ -103,12 +94,9 @@ export const createGalleryImage = async (data: CreateGalleryImageData): Promise<
       .from("gallery")
       .insert([{
         title: data.title,
-        description: data.description || "",
         imageUrl: "",
         imagePath: "",
-        category: data.category || "umum",
         isActive: data.isActive,
-        order: data.order,
         createdAt: now,
         updatedAt: now,
         createdBy: data.createdBy,
@@ -218,10 +206,7 @@ export const updateGalleryImage = async (id: string, data: UpdateGalleryImageDat
     };
 
     if (data.title !== undefined) updateData.title = data.title;
-    if (data.description !== undefined) updateData.description = data.description;
-    if (data.category !== undefined) updateData.category = data.category;
     if (data.isActive !== undefined) updateData.isActive = data.isActive;
-    if (data.order !== undefined) updateData.order = data.order;
 
     if (data.image) {
       if (currentImage.imagePath) {
@@ -296,7 +281,7 @@ export const searchGalleryImages = async (searchTerm: string): Promise<GalleryIm
     const { data, error } = await supabase
       .from("gallery")
       .select("*")
-      .or(`title.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%,category.ilike.%${searchTerm}%`)
+      .ilike("title", `%${searchTerm}%`)
       .order("updatedAt", { ascending: false });
 
     if (error) throw error;
