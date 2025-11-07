@@ -12,10 +12,12 @@ interface ArticleFormProps {
     title: string;
     content: string;
     image: File | null;
+    imageUrl?: string;
     status: "draft" | "published";
   };
   onChange: (field: string, value: string | File) => void;
   onStorageError: (message: string) => void;
+  isEditing?: boolean;
   loading?: boolean;
 }
 
@@ -23,6 +25,7 @@ const ArticleForm: React.FC<ArticleFormProps> = ({
   formData,
   onChange,
   onStorageError,
+  isEditing = false,
   loading = false,
 }) => {
   const [previewUrl, setPreviewUrl] = useState<string>("");
@@ -108,8 +111,9 @@ const ArticleForm: React.FC<ArticleFormProps> = ({
   };
 
   const handlePreviewImage = () => {
-    if (previewUrl) {
-      window.open(previewUrl, "_blank");
+    const imageToPreview = previewUrl || formData.imageUrl;
+    if (imageToPreview) {
+      window.open(imageToPreview, "_blank");
     }
   };
 
@@ -124,13 +128,13 @@ const ArticleForm: React.FC<ArticleFormProps> = ({
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Gambar Berita <span className="text-red-500">*</span>
+              Gambar Berita {!isEditing && <span className="text-red-500">*</span>}
             </label>
 
-            {previewUrl && (
+            {(previewUrl || (isEditing && formData.imageUrl && !formData.image)) && (
               <div className="mb-4 relative">
                 <img
-                  src={previewUrl}
+                  src={previewUrl || formData.imageUrl}
                   alt="Preview"
                   className="w-full h-48 object-cover rounded-lg border border-gray-300"
                 />
@@ -152,10 +156,20 @@ const ArticleForm: React.FC<ArticleFormProps> = ({
                     <FiX size={16} />
                   </button>
                 </div>
+                {isEditing && (
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="mt-2 w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
+                    disabled={loading}
+                  >
+                    Ganti Gambar
+                  </button>
+                )}
               </div>
             )}
 
-            {!previewUrl && (
+            {!previewUrl && !(isEditing && formData.imageUrl) && (
               <div
                 className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
                   dragActive
@@ -172,11 +186,11 @@ const ArticleForm: React.FC<ArticleFormProps> = ({
                   <FiUpload size={16} />
                   <span className="text-gray-600 font-medium">{dragActive ? "Lepaskan gambar di sini" : "Drag & drop gambar atau klik untuk upload"}</span>
                 </div>
-                <p className="text-xs text-gray-500">Mendukung format: JPG, PNG, GIF (Max: 5MB)</p>
+                <p className="text-xs text-gray-500">{isEditing ? "Upload gambar baru untuk mengganti yang lama" : "Mendukung format: JPG, PNG, GIF (Max: 5MB)"}</p>
               </div>
             )}
 
-            {previewUrl && <p className="text-xs text-gray-500 mt-2">Klik "Preview" untuk melihat gambar ukuran penuh di tab baru</p>}
+            {((isEditing && formData.imageUrl && !previewUrl) || previewUrl) && <p className="text-xs text-gray-500 mt-2">Klik "Preview" untuk melihat gambar ukuran penuh di tab baru{isEditing && ", atau \"Ganti Gambar\" untuk memilih gambar lain"}</p>}
           </div>
 
           <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileSelect} className="hidden" disabled={loading} />
