@@ -1,7 +1,8 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useNationalHolidays } from "@/hooks/useNationalHolidays";
+import { getUpcomingAgendas, type Agenda } from "@/lib/agendaService";
 import { format } from "date-fns";
 import { id as idLocale } from "date-fns/locale";
 
@@ -19,7 +20,9 @@ interface AgendaItem {
 
 const AgendaSection = () => {
   const [mounted, setMounted] = useState(false);
-  const { holidays, loading, error } = useNationalHolidays();
+  const { holidays, loading: holidaysLoading, error } = useNationalHolidays();
+  const [customAgendas, setCustomAgendas] = useState<Agenda[]>([]);
+  const [agendasLoading, setAgendasLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,6 +30,22 @@ const AgendaSection = () => {
     }, 400);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    loadCustomAgendas();
+  }, []);
+
+  const loadCustomAgendas = async () => {
+    try {
+      setAgendasLoading(true);
+      const agendas = await getUpcomingAgendas();
+      setCustomAgendas(agendas.slice(0, 5)); // Limit to 5 upcoming agendas
+    } catch (error) {
+      console.error("Error loading custom agendas:", error);
+    } finally {
+      setAgendasLoading(false);
+    }
+  };
 
   const formatDate = (dateString: string, daysFromToday: number) => {
     try {
@@ -69,7 +88,48 @@ const AgendaSection = () => {
     }
   };
 
-  const agendaItems: AgendaItem[] = holidays.map(
+  const calculateDaysFromToday = (dateString: string): number => {
+    const today = new Date();
+    const targetDate = new Date(dateString);
+    const diffTime = targetDate.getTime() - today.getTime();
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  };
+
+  const isDateToday = (dateString: string): boolean => {
+    const today = new Date();
+    const targetDate = new Date(dateString);
+    return today.toDateString() === targetDate.toDateString();
+  };
+
+  const formatTime = (dateString: string): string => {
+    try {
+      return format(new Date(dateString), "HH:mm", { locale: idLocale });
+    } catch {
+      return "";
+    }
+  };
+
+  // Convert custom agendas to AgendaItem format
+  const customAgendaItems: AgendaItem[] = customAgendas.map(
+    (agenda): AgendaItem => {
+      const daysFromToday = calculateDaysFromToday(agenda.date);
+      const isToday = isDateToday(agenda.date);
+      return {
+        id: `custom-${agenda.id}`,
+        title: agenda.title,
+        date: formatDate(agenda.date, daysFromToday),
+        time: formatTime(agenda.date),
+        category: "Agenda RW",
+        color: isToday ? "bg-blue-600 hover:bg-blue-700" : "bg-blue-500 hover:bg-blue-600",
+        isToday,
+        type: "custom",
+        description: agenda.description,
+      };
+    }
+  );
+
+  // Convert holidays to AgendaItem format
+  const holidayItems: AgendaItem[] = holidays.map(
     (holiday, index): AgendaItem => ({
       id: `holiday-${index}`,
       title: holiday.name,
@@ -82,6 +142,9 @@ const AgendaSection = () => {
       description: holiday.description,
     })
   );
+
+  // Combine and sort by date (custom agendas first, then holidays)
+  const agendaItems: AgendaItem[] = [...customAgendaItems, ...holidayItems].slice(0, 6);
 
   return (
     <section className={`py-12 md:py-16 bg-gray-50 smooth-transition ${mounted ? "smooth-reveal" : "animate-on-load"}`}>
@@ -100,7 +163,7 @@ const AgendaSection = () => {
             <div className="space-y-4">
               <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4 md:mb-6 smooth-transition">Agenda & Hari Besar</h3>
 
-              {loading ? (
+              {(holidaysLoading || agendasLoading) ? (
                 <div className="space-y-4">
                   {[1, 2, 3].map((item) => (
                     <div key={item} className="bg-gray-200 animate-pulse rounded-lg p-4 h-20" />

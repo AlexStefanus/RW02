@@ -115,7 +115,7 @@ const StrukturContent = () => {
                     <FiUsers className="w-12 h-12 text-gray-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Struktur Organisasi</h2>
-                  <p className="text-gray-600">Struktur organisasi desa sedang dalam proses pembaruan. Silakan kembali lagi nanti untuk melihat informasi terbaru.</p>
+                  <p className="text-gray-600">Struktur kepengurusan RW 02 Rangkah sedang dalam proses pembaruan. Silakan kembali lagi nanti untuk melihat informasi terbaru.</p>
                 </div>
               </div>
             </div>

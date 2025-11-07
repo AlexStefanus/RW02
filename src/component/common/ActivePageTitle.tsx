@@ -22,9 +22,9 @@ const ActivePageTitle = ({ className = "" }: ActivePageTitleProps) => {
       "/": { title: "Beranda", subtitle: "Selamat datang di website RW 02 Rangkah" },
       "/tentang": { title: "Tentang", subtitle: "Informasi mengenai RW 02 Rangkah" },
       "/berita": { title: "Berita", subtitle: "Berita terbaru dari RW 02 Rangkah" },
-      "/pengumuman": { title: "Pengumuman", subtitle: "Pengumuman resmi dari pemerintah desa" },
-      "/struktur": { title: "Struktur", subtitle: "Struktur organisasi pemerintahan desa" },
-      "/galeri": { title: "Galeri", subtitle: "Koleksi foto dan video kegiatan desa" },
+      "/pengumuman": { title: "Pengumuman", subtitle: "Pengumuman resmi dari RW 02 Rangkah" },
+      "/struktur": { title: "Struktur", subtitle: "Struktur organisasi RW 02 Rangkah" },
+      "/galeri": { title: "Galeri", subtitle: "Koleksi foto dan video kegiatan RW 02 Rangkah" },
       "/dashboard": { title: "Dashboard", subtitle: "Panel administrasi website" },
     };
 

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RW 02 Kelurahan Rangkah",
+  title: "RW 02 Rangkah",
   description: "Website resmi RW 02, Kelurahan Rangkah, Kecamatan Tambaksari, Kota Surabaya, Jawa Timur.",
   icons: {
     icon: [

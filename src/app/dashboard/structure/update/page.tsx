@@ -147,7 +147,7 @@ const UpdateStructurePage = () => {
 
   return (
     <div className="flex flex-col min-h-full">
-      <PageHeader title="Edit Struktur" subtitle="Perbarui struktur organisasi desa" actions={headerActions} mounted={mounted} />
+      <PageHeader title="Edit Struktur" subtitle="Perbarui struktur kepengurusan RW 02 Rangkah" actions={headerActions} mounted={mounted} />
 
       <div className={`app-content smooth-transition flex-1 ${mounted ? "smooth-reveal stagger-1" : "animate-on-load"}`}>
         {updateError && <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">{updateError}</div>}

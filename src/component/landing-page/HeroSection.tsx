@@ -72,22 +72,14 @@ const HeroSection = () => {
 
       <SlideIndicator images={images} currentImageIndex={currentImageIndex} onSlideChange={handleManualSlide} />
 
-      <div className={`hidden md:flex absolute bottom-5 right-8 z-20 smooth-transition ${mounted ? "smooth-reveal stagger-6" : "animate-on-load"}`}>
-        <Link
-          href="/galeri"
-          className="group flex items-center gap-1 px-3 py-1.5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg text-white/60 text-xs font-medium hover:bg-white/10 hover:text-white/80 transition-all duration-300"
-        >
-          Temukan lebih banyak foto di Galeri
-          <FiArrowRight />
-        </Link>
-      </div>
+  
 
       <div className={`flex md:hidden absolute bottom-5 right-8 z-20 smooth-transition ${mounted ? "smooth-reveal stagger-6" : "animate-on-load"}`}>
         <Link
           href="/galeri"
           className="group flex items-center gap-1 px-3 py-1.5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg text-white/60 text-xs font-medium hover:bg-white/10 hover:text-white/80 transition-all duration-300"
         >
-          Galeri Desa
+          Galeri
           <FiArrowRight />
         </Link>
       </div>

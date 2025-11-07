@@ -1,6 +1,6 @@
 "use client";
 
-import { FiHome, FiFileText, FiBell, FiLogOut, FiX, FiUser, FiImage, FiUsers } from "react-icons/fi";
+import { FiHome, FiFileText, FiBell, FiLogOut, FiX, FiUser, FiImage, FiUsers, FiCalendar } from "react-icons/fi";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -39,6 +39,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
     { icon: FiHome, text: "Dashboard", href: "/dashboard" },
     { icon: FiFileText, text: "Kelola Berita", href: "/dashboard/article" },
     { icon: FiBell, text: "Kelola Pengumuman", href: "/dashboard/announcement" },
+    { icon: FiCalendar, text: "Kelola Agenda", href: "/dashboard/agenda" },
     { icon: FiUsers, text: "Kelola Struktur", href: "/dashboard/structure" },
     { icon: FiImage, text: "Kelola Galeri", href: "/dashboard/gallery" },
     { icon: FiUser, text: "Kelola Akun", href: "/dashboard/users" },

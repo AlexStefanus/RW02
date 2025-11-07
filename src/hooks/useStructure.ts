@@ -16,7 +16,7 @@ export const useStructures = () => {
       setStructures(data);
     } catch (err) {
       console.error("Error fetching structures:", err);
-      setError("Gagal memuat struktur desa");
+      setError("Gagal memuat struktur");
     } finally {
       setLoading(false);
     }
@@ -54,7 +54,7 @@ export const useStructureActions = () => {
       const result = await createStructure(data);
       return result;
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Gagal membuat struktur desa";
+      const errorMessage = err instanceof Error ? err.message : "Gagal membuat struktur";
       setError(errorMessage);
       console.error("Error creating structure:", err);
       return null;
@@ -70,7 +70,7 @@ export const useStructureActions = () => {
       const result = await updateStructure(id, data);
       return result;
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Gagal memperbarui struktur desa";
+      const errorMessage = err instanceof Error ? err.message : "Gagal memperbarui struktur";
       setError(errorMessage);
       console.error("Error updating structure:", err);
       return null;
@@ -86,7 +86,7 @@ export const useStructureActions = () => {
       await deleteStructure(id);
       return true;
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Gagal menghapus struktur desa";
+      const errorMessage = err instanceof Error ? err.message : "Gagal menghapus struktur";
       setError(errorMessage);
       console.error("Error deleting structure:", err);
       return false;
@@ -127,7 +127,7 @@ export const useStructureDetail = (id: string | null) => {
         const data = await getStructureById(id);
         setStructure(data);
       } catch (err) {
-        setError("Gagal memuat detail struktur desa");
+        setError("Gagal memuat detail struktur");
         console.error("Error fetching structure detail:", err);
       } finally {
         setLoading(false);
@@ -158,7 +158,7 @@ export const useActiveStructures = () => {
         setStructures(data);
       } catch (err) {
         console.error("Error fetching active structures:", err);
-        setError("Gagal memuat struktur desa aktif");
+        setError("Gagal memuat struktur aktif");
       } finally {
         setLoading(false);
       }
