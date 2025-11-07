@@ -42,7 +42,6 @@ const Sidebar = ({ isOpen, onClose, onToggle, isCollapsed = false }: SidebarProp
     { icon: FiFileText, text: "Kelola Berita", href: "/dashboard/article" },
     { icon: FiBell, text: "Kelola Pengumuman", href: "/dashboard/announcement" },
     { icon: FiCalendar, text: "Kelola Agenda", href: "/dashboard/agenda" },
-    { icon: FiUsers, text: "Kelola Struktur", href: "/dashboard/structure" },
     { icon: FiImage, text: "Kelola Galeri", href: "/dashboard/gallery" },
     { icon: FiUser, text: "Kelola Akun", href: "/dashboard/users" },
   ];

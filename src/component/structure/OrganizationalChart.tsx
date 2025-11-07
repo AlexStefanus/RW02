@@ -21,15 +21,23 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ structures })
     <div className={`flex flex-col items-center ${highlight ? 'transform scale-105' : ''}`}>
       <div className={`relative ${highlight ? 'mb-3' : 'mb-2'}`}>
         <div className={`${highlight ? 'w-32 h-32' : 'w-24 h-24'} rounded-lg overflow-hidden border-4 ${highlight ? 'border-green-500' : 'border-yellow-400'} shadow-lg bg-white`}>
-          <img
-            src={person.imageUrl}
-            alt={person.personName}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.currentTarget as HTMLImageElement;
-              target.src = "/default-avatar.png";
-            }}
-          />
+          {person.imageUrl ? (
+            <img
+              src={person.imageUrl}
+              alt={person.personName}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.currentTarget as HTMLImageElement;
+                target.src = "/default-avatar.png";
+              }}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-200">
+              <svg className="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+          )}
         </div>
         <div className={`absolute -top-2 left-1/2 transform -translate-x-1/2 ${highlight ? 'bg-green-500' : 'bg-green-600'} text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap`}>
           {person.position}

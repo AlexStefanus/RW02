@@ -92,7 +92,7 @@ const StructureForm = ({ formData, onChange, onStorageError, loading = false, ed
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <div className="space-y-4">
-          <label className="block text-sm font-medium text-gray-700">Gambar Struktur {!editMode && <span className="text-red-500">*</span>}</label>
+          <label className="block text-sm font-medium text-gray-700">Foto Profil {!editMode && <span className="text-red-500">*</span>}</label>
 
           {imagePreview ? (
             <div>

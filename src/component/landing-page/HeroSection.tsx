@@ -50,7 +50,7 @@ const HeroSection = () => {
   const [mounted, setMounted] = useState(false);
   const { images: galleryImages, loading: galleryLoading } = useActiveGalleryImages(5);
 
-  const fallbackImages = ["/senam.png", "/jalan.png", "/balai.png", "/merdeka.png", "/pahlawan.png"];
+  const fallbackImages = ["/senam.png", "/jalan.png", "/ksh.png", "/merdeka.png", "/pahlawan.png"];
 
   const images = galleryImages.length > 0 ? galleryImages.map((img) => img.imageUrl) : fallbackImages;
   const { currentImageIndex, handleManualSlide } = useImageSlider(images, galleryLoading);

@@ -67,7 +67,7 @@ const CreateStructurePage = () => {
     }
 
     if (!formData.image) {
-      alert("Gambar struktur harus dipilih.");
+      alert("Foto Profil harus dipilih.");
       return;
     }
 

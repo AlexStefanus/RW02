@@ -113,7 +113,7 @@ const StorageProgress = () => {
               <span className="text-xs text-white/90">{progressData.gallerySize}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-xs text-white/70">Gambar Struktur:</span>
+              <span className="text-xs text-white/70">Foto Profil:</span>
               <span className="text-xs text-white/90">{progressData.structuresSize}</span>
             </div>
             <div className="flex justify-between items-center">

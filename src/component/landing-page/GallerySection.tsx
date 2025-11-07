@@ -30,7 +30,7 @@ const GallerySection = () => {
     },
     {
       id: "fallback-3",
-      imageUrl: "/balai.png",
+      imageUrl: "/ksh.png",
       title: "Foto di Balai",
       description: "Foto di Balai",
     },
