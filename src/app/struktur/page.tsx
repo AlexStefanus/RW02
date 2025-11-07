@@ -1,19 +1,15 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, Suspense } from "react";
-import { FiUsers, FiLoader, FiChevronDown } from "react-icons/fi";
-import { useSearchParams } from "next/navigation";
+import { FiUsers, FiLoader } from "react-icons/fi";
 import Header from "@/component/landing-page/Header";
 import Footer from "@/component/landing-page/Footer";
 import { usePageVisitor } from "@/hooks/usePageVisitor";
 import { useActiveStructures } from "@/hooks/useStructure";
+import OrganizationalChart from "@/component/structure/OrganizationalChart";
 
 const StrukturContent = () => {
   const [mounted, setMounted] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const searchParams = useSearchParams();
-  const structureId = searchParams?.get("id");
 
   usePageVisitor("Struktur");
   const { structures, loading, error } = useActiveStructures();
@@ -24,50 +20,6 @@ const StrukturContent = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (structures.length > 0) {
-      if (structureId) {
-        const foundIndex = structures.findIndex((s) => s.id === structureId);
-        if (foundIndex !== -1) {
-          setActiveTab(foundIndex);
-        } else {
-          setActiveTab(0);
-        }
-      } else if (activeTab >= structures.length) {
-        setActiveTab(0);
-      }
-    }
-  }, [structures, structureId, activeTab]);
-
-  const currentStructure = structures[activeTab] || null;
-
-  const StructureDiagram = () => {
-    if (!currentStructure) {
-      return (
-        <div className="text-center py-8">
-          <p className="text-gray-500">Tidak ada struktur yang tersedia</p>
-        </div>
-      );
-    }
-
-    return (
-      <div className="flex justify-center">
-        <div className="w-full max-w-4xl">
-          <img
-            src={currentStructure.imageUrl}
-            alt={currentStructure.name}
-            className="w-full h-auto rounded-lg"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = "/struktur-desa.png";
-            }}
-          />
-          <p className="text-center text-gray-600 mt-4 text-sm">{currentStructure.description}</p>
-        </div>
-      </div>
-    );
-  };
 
   if (loading) {
     return (
@@ -132,45 +84,13 @@ const StrukturContent = () => {
 
       <main className={`pt-12 pb-16 smooth-transition ${mounted ? "smooth-reveal" : "animate-on-load"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="flex justify-center mb-8">
-            <div className="relative">
-              <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center justify-between gap-3 bg-white border border-gray-200 rounded-lg shadow-sm px-6 py-3 min-w-[280px] hover:border-[#00a753] transition-colors">
-                <span className="font-medium text-gray-900">{currentStructure ? currentStructure.name : "Pilih Struktur Organisasi"}</span>
-                <FiChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
-              </button>
-
-              {dropdownOpen && (
-                <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
-                  {structures.map((structure, index) => (
-                    <button
-                      key={structure.id}
-                      onClick={() => {
-                        setActiveTab(index);
-                        setDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${activeTab === index ? "bg-[#00a753] text-white hover:bg-[#008c45]" : "text-gray-700"}`}
-                    >
-                      <div className="font-medium">{structure.name}</div>
-                      {structure.description && (
-                        <div className={`text-sm mt-1 ${activeTab === index ? "text-gray-200" : "text-gray-500"}`}>{structure.description.length > 60 ? `${structure.description.substring(0, 60)}...` : structure.description}</div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-
-          {dropdownOpen && <div className="fixed inset-0 z-5" onClick={() => setDropdownOpen(false)} />}
-
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-[#00a753] mb-2">{currentStructure ? currentStructure.name.toUpperCase() : "STRUKTUR ORGANISASI"}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-[#00a753] mb-2">STRUKTUR PENGURUS RW 02</h1>
+            <p className="text-gray-600">Periode 2023 - 2027</p>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-8 min-h-[600px] flex items-center justify-center">
-            <StructureDiagram />
+          <div className="min-h-[600px]">
+            <OrganizationalChart structures={structures} />
           </div>
         </div>
       </main>

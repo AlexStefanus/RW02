@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -21,8 +21,8 @@ const UpdateStructurePage = () => {
   const [success, setSuccess] = useState<string | null>(null);
   const [storageError, setStorageError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    name: "",
-    description: "",
+    personName: "",
+    position: "",
     image: null as File | null,
     order: 0,
     isActive: true,
@@ -38,8 +38,8 @@ const UpdateStructurePage = () => {
   useEffect(() => {
     if (structure) {
       setFormData({
-        name: structure.name,
-        description: structure.description,
+        personName: structure.personName,
+        position: structure.position,
         image: null,
         order: structure.order,
         isActive: structure.isActive,
@@ -77,8 +77,13 @@ const UpdateStructurePage = () => {
       return;
     }
 
-    if (!formData.name.trim()) {
-      alert("Nama struktur harus diisi.");
+    if (!formData.personName.trim()) {
+      alert("Nama pengurus harus diisi.");
+      return;
+    }
+
+    if (!formData.position.trim()) {
+      alert("Jabatan harus diisi.");
       return;
     }
 
@@ -88,8 +93,8 @@ const UpdateStructurePage = () => {
     }
 
     const updateData: any = {
-      name: formData.name.trim(),
-      description: formData.description.trim(),
+      personName: formData.personName.trim(),
+      position: formData.position.trim(),
       order: formData.order,
       isActive: formData.isActive,
       updatedBy: user.id,

@@ -1,6 +1,6 @@
 "use client";
 
-import { FiHome, FiFileText, FiBell, FiLogOut, FiX, FiUser, FiImage, FiUsers, FiCalendar } from "react-icons/fi";
+import { FiHome, FiFileText, FiBell, FiLogOut, FiX, FiUser, FiImage, FiUsers, FiCalendar, FiMenu } from "react-icons/fi";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,9 +11,11 @@ import StorageProgress from "./StorageProgress";
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  onToggle?: () => void;
+  isCollapsed?: boolean;
 }
 
-const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
+const Sidebar = ({ isOpen, onClose, onToggle, isCollapsed = false }: SidebarProps) => {
   const pathname = usePathname();
   const sidebarRef = useRef<HTMLElement>(null);
   const { profile } = useAuth();
@@ -50,14 +52,25 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
       <aside
         ref={sidebarRef}
         className={`
-        dashboard-sidebar fixed lg:relative lg:translate-x-0 
-        w-64 h-full flex flex-col text-white bg-[#00a753] shadow-lg 
+        dashboard-sidebar fixed lg:relative
+        w-72 h-full flex flex-col text-white bg-[#00a753] shadow-lg 
         z-50 transition-transform duration-300 ease-in-out
-        ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        ${isCollapsed ? "lg:-translate-x-full" : "lg:translate-x-0"}
       `}
       >
-        <div className="lg:hidden absolute top-4 right-4 z-10">
-          <button onClick={onClose} className="text-white hover:bg-white/10 p-2 rounded-lg smooth-transition hover:scale-110 active:scale-95">
+        <div className="absolute top-4 right-1 z-10">
+          <button 
+            onClick={() => {
+              if (window.innerWidth < 1024) {
+                onClose();
+              } else {
+                onToggle?.();
+              }
+            }} 
+            className="text-white hover:bg-white/10 p-2 rounded-lg smooth-transition hover:scale-110 active:scale-95"
+            aria-label="Close Sidebar"
+          >
             <FiX size={20} />
           </button>
         </div>

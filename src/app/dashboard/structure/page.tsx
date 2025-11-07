@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FiPlus, FiEdit2, FiTrash2, FiImage, FiCalendar, FiUser } from "react-icons/fi";
 import { useState, useEffect } from "react";
@@ -28,9 +28,9 @@ const StructurePage = () => {
 
   const handleDelete = async (id: string | number) => {
     const structure = structures.find((s) => s.id === id);
-    const structureName = structure?.name || "item ini";
+    const structureName = structure?.personName || "item ini";
 
-    const confirmed = await confirmDelete("Hapus Struktur?", `Struktur "${structureName}" akan dihapus secara permanen dan tidak dapat dikembalikan!`, "Ya, Hapus Struktur!");
+    const confirmed = await confirmDelete("Hapus Pengurus?", `Data pengurus "${structureName}" akan dihapus secara permanen dan tidak dapat dikembalikan!`, "Ya, Hapus Data!");
 
     if (!confirmed) return;
 
@@ -91,14 +91,14 @@ const StructurePage = () => {
       ),
     },
     {
-      key: "name",
-      label: "Nama Struktur",
+      key: "personName",
+      label: "Nama Pengurus",
       className: "font-medium text-gray-900",
     },
     {
-      key: "description",
-      label: "Deskripsi",
-      render: (value: string) => <span className="text-sm text-gray-600 line-clamp-2 max-w-xs">{value ? (value.length > 100 ? `${value.substring(0, 100)}...` : value) : "-"}</span>,
+      key: "position",
+      label: "Jabatan",
+      render: (value: string) => <span className="text-sm text-gray-600">{value || "-"}</span>,
     },
     {
       key: "order",

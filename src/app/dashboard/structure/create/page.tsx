@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -17,8 +17,8 @@ const CreateStructurePage = () => {
   const [success, setSuccess] = useState<string | null>(null);
   const [storageError, setStorageError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    name: "",
-    description: "",
+    personName: "",
+    position: "",
     image: null as File | null,
     order: 0,
     isActive: true,
@@ -56,8 +56,13 @@ const CreateStructurePage = () => {
       return;
     }
 
-    if (!formData.name.trim()) {
-      alert("Nama struktur harus diisi.");
+    if (!formData.personName.trim()) {
+      alert("Nama pengurus harus diisi.");
+      return;
+    }
+
+    if (!formData.position.trim()) {
+      alert("Jabatan harus diisi.");
       return;
     }
 
@@ -72,8 +77,8 @@ const CreateStructurePage = () => {
     }
 
     const result = await create({
-      name: formData.name.trim(),
-      description: formData.description.trim(),
+      personName: formData.personName.trim(),
+      position: formData.position.trim(),
       image: formData.image,
       order: formData.order,
       isActive: formData.isActive,

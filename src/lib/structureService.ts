@@ -15,8 +15,8 @@ const refreshStorageStats = () => {
 
 export interface StructureItem {
   id: string;
-  name: string;
-  description: string;
+  personName: string;
+  position: string;
   imageUrl: string;
   imagePath: string;
   order: number;
@@ -28,8 +28,8 @@ export interface StructureItem {
 }
 
 export interface CreateStructureData {
-  name: string;
-  description: string;
+  personName: string;
+  position: string;
   image: File;
   order: number;
   isActive: boolean;
@@ -37,8 +37,8 @@ export interface CreateStructureData {
 }
 
 export interface UpdateStructureData {
-  name?: string;
-  description?: string;
+  personName?: string;
+  position?: string;
   image?: File;
   order?: number;
   isActive?: boolean;
@@ -97,8 +97,8 @@ export const createStructure = async (data: CreateStructureData): Promise<Struct
     const { data: insertedData, error } = await supabase
       .from("structures")
       .insert([{
-        name: data.name,
-        description: data.description,
+        personName: data.personName,
+        position: data.position,
         imageUrl: "",
         imagePath: "",
         order: data.order,
@@ -182,8 +182,8 @@ export const updateStructure = async (id: string, data: UpdateStructureData): Pr
       updatedBy: data.updatedBy,
     };
 
-    if (data.name) updateData.name = data.name;
-    if (data.description !== undefined) updateData.description = data.description;
+    if (data.personName) updateData.personName = data.personName;
+    if (data.position !== undefined) updateData.position = data.position;
     if (data.order !== undefined) updateData.order = data.order;
     if (data.isActive !== undefined) updateData.isActive = data.isActive;
 

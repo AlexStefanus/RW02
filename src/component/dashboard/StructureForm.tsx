@@ -1,11 +1,11 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import { FiImage, FiUpload, FiX } from "react-icons/fi";
 
 interface StructureFormData {
-  name: string;
-  description: string;
+  personName: string;
+  position: string;
   image: File | null;
   order: number;
   isActive: boolean;
@@ -133,14 +133,14 @@ const StructureForm = ({ formData, onChange, onStorageError, loading = false, ed
                         newWindow.document.write(`
                           <html>
                             <head>
-                              <title>Preview Gambar - ${formData.name || "Structure Image"}</title>
+                              <title>Preview Gambar - ${formData.personName || "Structure Image"}</title>
                               <style>
                                 body { margin: 0; padding: 20px; background: #f5f5f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
                                 img { max-width: 100%; max-height: 100vh; object-fit: contain; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: white; }
                               </style>
                             </head>
                             <body>
-                              <img src="${imagePreview}" alt="Preview ${formData.name || "Structure Image"}" />
+                              <img src="${imagePreview}" alt="Preview ${formData.personName || "Structure Image"}" />
                             </body>
                           </html>
                         `);
@@ -196,15 +196,15 @@ const StructureForm = ({ formData, onChange, onStorageError, loading = false, ed
         <div className="space-y-6">
 
           <div className="space-y-2">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Nama Struktur <span className="text-red-500">*</span>
+            <label htmlFor="personName" className="block text-sm font-medium text-gray-700">
+              Nama Pengurus <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              id="name"
-              value={formData.name}
-              onChange={(e) => onChange("name", e.target.value)}
-              placeholder="Contoh: PKK, BPD, LPMD, dll"
+              id="personName"
+              value={formData.personName}
+              onChange={(e) => onChange("personName", e.target.value)}
+              placeholder="Contoh: Budi Santoso"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a753] focus:border-[#00a753] transition-colors"
               disabled={loading}
               maxLength={100}
@@ -214,20 +214,20 @@ const StructureForm = ({ formData, onChange, onStorageError, loading = false, ed
 
 
           <div className="space-y-2">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-              Deskripsi
+            <label htmlFor="position" className="block text-sm font-medium text-gray-700">
+              Jabatan <span className="text-red-500">*</span>
             </label>
-            <textarea
-              id="description"
-              value={formData.description}
-              onChange={(e) => onChange("description", e.target.value)}
-              placeholder="Deskripsi tentang struktur organisasi ini..."
-              rows={6}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a753] focus:border-[#00a753] transition-colors resize-none"
+            <input
+              type="text"
+              id="position"
+              value={formData.position}
+              onChange={(e) => onChange("position", e.target.value)}
+              placeholder="Contoh: KETUA RW, SEKRETARIS 1, BENDAHARA 1, dll"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a753] focus:border-[#00a753] transition-colors"
               disabled={loading}
-              maxLength={500}
+              maxLength={100}
             />
-            <p className="text-xs text-gray-500">Maksimal 500 karakter</p>
+            <p className="text-xs text-gray-500">Maksimal 100 karakter</p>
           </div>
 
 

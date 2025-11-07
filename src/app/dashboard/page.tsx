@@ -120,46 +120,8 @@ const DashboardPage = () => {
             <VisitorChart type="line" timeRange="7days" />
           </div>
 
-          {/* Right Column - Quick Actions & Summary */}
+          {/* Right Column - Summary */}
           <div className="xl:col-span-1 space-y-6">
-            {/* Quick Actions */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-1 h-6 bg-[#00a753] rounded-full"></span>
-                Aksi Cepat
-              </h3>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={() => (window.location.href = "/dashboard/article/create")}
-                  className="bg-gradient-to-br from-green-50 to-green-100 text-green-700 py-4 px-3 rounded-xl text-xs font-medium hover:shadow-md transition-all flex flex-col items-center gap-2 border border-green-200"
-                >
-                  <FiFileText size={20} />
-                  <span>Berita</span>
-                </button>
-                <button
-                  onClick={() => (window.location.href = "/dashboard/announcement/create")}
-                  className="bg-gradient-to-br from-purple-50 to-purple-100 text-purple-700 py-4 px-3 rounded-xl text-xs font-medium hover:shadow-md transition-all flex flex-col items-center gap-2 border border-purple-200"
-                >
-                  <FiBell size={20} />
-                  <span>Pengumuman</span>
-                </button>
-                <button
-                  onClick={() => (window.location.href = "/dashboard/agenda/create")}
-                  className="bg-gradient-to-br from-blue-50 to-blue-100 text-blue-700 py-4 px-3 rounded-xl text-xs font-medium hover:shadow-md transition-all flex flex-col items-center gap-2 border border-blue-200"
-                >
-                  <FiCalendar size={20} />
-                  <span>Agenda</span>
-                </button>
-                <button
-                  onClick={() => (window.location.href = "/dashboard/gallery/create")}
-                  className="bg-gradient-to-br from-orange-50 to-orange-100 text-orange-700 py-4 px-3 rounded-xl text-xs font-medium hover:shadow-md transition-all flex flex-col items-center gap-2 border border-orange-200"
-                >
-                  <FiImage size={20} />
-                  <span>Galeri</span>
-                </button>
-              </div>
-            </div>
-
             {/* Recent Activity */}
             <RecentActivity />
 
