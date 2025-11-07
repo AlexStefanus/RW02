@@ -1,12 +1,10 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
-import { useActiveGalleryImages } from "@/hooks/useGallery";
 import Link from "next/link";
 
 const GallerySection = () => {
   const [mounted, setMounted] = useState(false);
-  const { images: galleryImages, loading, error } = useActiveGalleryImages(10);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -15,40 +13,38 @@ const GallerySection = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const fallbackImages = [
+  const displayImages = [
     {
-      id: "fallback-1",
+      id: "static-1",
       imageUrl: "/senam.png",
       title: "Senam Sehat",
       description: "Senam Sehat",
     },
     {
-      id: "fallback-2",
+      id: "static-2",
       imageUrl: "/jalan.png",
       title: "Jalan Sehat",
       description: "Jalan Sehat",
     },
     {
-      id: "fallback-3",
+      id: "static-3",
       imageUrl: "/ksh.png",
-      title: "Foto di Balai",
-      description: "Foto di Balai",
+      title: "KSH di Balai",
+      description: "KSH di Balai",
     },
     {
-      id: "fallback-4",
+      id: "static-4",
       imageUrl: "/merdeka.png",
       title: "Hari Kemerdekaan",
       description: "Hari Kemerdekaan",
     },
     {
-      id: "fallback-5",
+      id: "static-5",
       imageUrl: "/pahlawan.png",
       title: "Hari Pahlawan",
       description: "Hari Pahlawan",
     },
   ];
-
-  const displayImages = galleryImages.length > 0 ? galleryImages : fallbackImages;
 
   const repeatedImagesRow1 = Array(4).fill(displayImages).flat();
   const repeatedImagesRow2 = Array(4).fill(displayImages).flat();

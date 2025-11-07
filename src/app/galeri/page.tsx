@@ -246,7 +246,7 @@ const GalleryPage = () => {
                 {selectedImageData.createdAt && (
                   <p className="text-sm text-gray-500">
                     Ditambahkan pada:{" "}
-                    {new Date(selectedImageData.createdAt.toDate()).toLocaleDateString("id-ID", {
+                    {new Date(selectedImageData.createdAt).toLocaleDateString("id-ID", {
                       day: "numeric",
                       month: "long",
                       year: "numeric",
@@ -256,7 +256,7 @@ const GalleryPage = () => {
                 {!selectedImageData.createdAt && selectedImageData.updatedAt && (
                   <p className="text-sm text-gray-500">
                     Diperbarui pada:{" "}
-                    {new Date(selectedImageData.updatedAt.toDate()).toLocaleDateString("id-ID", {
+                    {new Date(selectedImageData.updatedAt).toLocaleDateString("id-ID", {
                       day: "numeric",
                       month: "long",
                       year: "numeric",

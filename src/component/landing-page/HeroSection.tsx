@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useActiveGalleryImages } from "@/hooks/useGallery";
 import SlideIndicator from "./SlideIndicator";
 import HeroContent from "./HeroContent";
 import ImageSlider from "./ImageSlider";
 import { FiArrowRight } from "react-icons/fi";
 
-const useImageSlider = (images: string[], galleryLoading: boolean) => {
+const useImageSlider = (images: string[]) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isManualControl, setIsManualControl] = useState(false);
 
   useEffect(() => {
-    if (!galleryLoading && images.length > 0) {
+    if (images.length > 0) {
       const randomIndex = Math.floor(Math.random() * images.length);
       setCurrentImageIndex(randomIndex);
     }
-  }, [galleryLoading, images.length]);
+  }, [images.length]);
 
   useEffect(() => {
     if (isManualControl || images.length === 0) return;
@@ -48,12 +47,9 @@ const useImageSlider = (images: string[], galleryLoading: boolean) => {
 
 const HeroSection = () => {
   const [mounted, setMounted] = useState(false);
-  const { images: galleryImages, loading: galleryLoading } = useActiveGalleryImages(5);
 
-  const fallbackImages = ["/senam.png", "/jalan.png", "/ksh.png", "/merdeka.png", "/pahlawan.png"];
-
-  const images = galleryImages.length > 0 ? galleryImages.map((img) => img.imageUrl) : fallbackImages;
-  const { currentImageIndex, handleManualSlide } = useImageSlider(images, galleryLoading);
+  const images = ["/senam.png", "/jalan.png", "/ksh.png", "/merdeka.png", "/pahlawan.png"];
+  const { currentImageIndex, handleManualSlide } = useImageSlider(images);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -64,7 +60,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-      <ImageSlider images={images} currentImageIndex={currentImageIndex} fallbackImages={fallbackImages} />
+      <ImageSlider images={images} currentImageIndex={currentImageIndex} fallbackImages={images} />
 
       <div className="absolute inset-0 bg-black/70"></div>
 
