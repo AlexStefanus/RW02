@@ -243,7 +243,7 @@ const BeritaDetailPage = () => {
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600">
                 Diterbitkan pada {formatDate(article.createdAt)}
-                {article.updatedAt && article.updatedAt !== article.createdAt && <span> â€¢ Diperbarui pada {formatDate(article.updatedAt)}</span>}
+                {article.updatedAt && article.updatedAt !== article.createdAt && <span> Diperbarui pada {formatDate(article.updatedAt)}</span>}
               </div>
               <Link href="/berita" className="inline-flex items-center gap-2 px-4 py-2 bg-[#00a753] text-white rounded hover:bg-[#008c45] transition-colors">
                 Lihat Berita Lainnya

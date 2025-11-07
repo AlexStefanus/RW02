@@ -305,7 +305,7 @@ const PengumumanDetailPage = () => {
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600">
                 Diterbitkan pada {formatDate(announcement.createdAt)}
-                {announcement.updatedAt && announcement.updatedAt !== announcement.createdAt && <span> â€¢ Diperbarui pada {formatDate(announcement.updatedAt)}</span>}
+                {announcement.updatedAt && announcement.updatedAt !== announcement.createdAt && <span> Diperbarui pada {formatDate(announcement.updatedAt)}</span>}
               </div>
               <Link href="/pengumuman" className="inline-flex items-center gap-2 px-4 py-2 bg-[#00a753] text-white rounded hover:bg-[#008c45] transition-colors">
                 Lihat Pengumuman Lainnya
