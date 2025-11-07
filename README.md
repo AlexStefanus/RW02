@@ -78,55 +78,23 @@ NEXT_PUBLIC_OPENWEATHER_API_KEY=your_openweather_api_key
 
 ### 4. Setup Database (Supabase)
 
-Buat tabel-tabel berikut di Supabase:
+**PENTING:** Gunakan file SQL yang sudah disediakan untuk setup database lengkap!
 
-**Tabel: announcements**
-```sql
-CREATE TABLE announcements (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  title TEXT NOT NULL,
-  content TEXT NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  is_active BOOLEAN DEFAULT true
-);
-```
+1. Buka Supabase Dashboard
+2. Pergi ke **SQL Editor**
+3. Buka file `database_setup.sql` yang ada di root project
+4. Copy seluruh isi file dan paste ke SQL Editor
+5. Klik **"Run"** untuk menjalankan script
+6. Setup Storage Buckets (lihat `DATABASE_SETUP_GUIDE.md` untuk detail)
 
-**Tabel: articles**
-```sql
-CREATE TABLE articles (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  title TEXT NOT NULL,
-  content TEXT NOT NULL,
-  image_url TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  is_published BOOLEAN DEFAULT false
-);
-```
+**Atau ikuti panduan lengkap di:** [`DATABASE_SETUP_GUIDE.md`](./DATABASE_SETUP_GUIDE.md)
 
-**Tabel: gallery**
-```sql
-CREATE TABLE gallery (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  title TEXT NOT NULL,
-  image_url TEXT NOT NULL,
-  description TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-```
-
-**Tabel: agenda**
-```sql
-CREATE TABLE agenda (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  title TEXT NOT NULL,
-  description TEXT,
-  date TIMESTAMP WITH TIME ZONE NOT NULL,
-  location TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-```
+File `database_setup.sql` akan otomatis membuat:
+- ✅ Semua tabel yang diperlukan (users, articles, announcements, agenda, gallery, structure, dll)
+- ✅ Row Level Security (RLS) policies
+- ✅ Indexes untuk performa optimal
+- ✅ Triggers untuk auto-update timestamps
+- ✅ Default data (visitor_stats, storage_stats, structure_settings)
 
 ### 5. Jalankan Development Server
 

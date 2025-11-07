@@ -60,3 +60,6 @@ Thumbs.db
 # temporary files
 *.tmp
 .cache/
+
+# documentation (custom untuk project ini)
+README.md

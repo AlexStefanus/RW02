@@ -26,6 +26,15 @@ const PengumumanDetailPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const getInitials = (name: string) => {
+    if (!name) return "?";
+    const words = name.trim().split(" ");
+    if (words.length === 1) {
+      return words[0].charAt(0).toUpperCase();
+    }
+    return (words[0].charAt(0) + words[words.length - 1].charAt(0)).toUpperCase();
+  };
+
   const formatDate = (timestamp: any) => {
     if (!timestamp) return "";
 
@@ -251,7 +260,7 @@ const PengumumanDetailPage = () => {
             <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-[#00a753] rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">DN</span>
+                  <span className="text-white text-xs font-bold">{getInitials(announcement.authorName)}</span>
                 </div>
                 <span className="font-medium">{announcement.authorName}</span>
               </div>

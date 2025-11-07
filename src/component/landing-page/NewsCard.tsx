@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import Link from "next/link";
 import { format } from "date-fns";
 import { id as idLocale } from "date-fns/locale";
@@ -18,6 +18,15 @@ interface NewsCardProps {
 }
 
 const NewsCard = ({ news, index, mounted }: NewsCardProps) => {
+  const getInitials = (name: string) => {
+    if (!name) return "?";
+    const words = name.trim().split(" ");
+    if (words.length === 1) {
+      return words[0].charAt(0).toUpperCase();
+    }
+    return (words[0].charAt(0) + words[words.length - 1].charAt(0)).toUpperCase();
+  };
+
   const formatDate = (timestamp: any) => {
     if (!timestamp) return "";
     try {
@@ -55,7 +64,7 @@ const NewsCard = ({ news, index, mounted }: NewsCardProps) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 bg-[#00a753] rounded-full flex items-center justify-center hover-scale smooth-transition">
-              <span className="text-white text-xs font-bold">DN</span>
+              <span className="text-white text-xs font-bold">{getInitials(news.authorName)}</span>
             </div>
             <div>
               <p className="text-xs font-medium text-gray-900 smooth-transition">{news.authorName}</p>
