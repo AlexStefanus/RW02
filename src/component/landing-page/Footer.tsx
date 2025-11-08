@@ -49,14 +49,24 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <h4 className="text-lg md:text-xl font-bold mb-3 md:mb-2 smooth-transition">Hubungi Kami</h4>
             <div className="space-y-2 md:space-y-1">
-              <div className="flex items-center justify-center md:justify-start hover-lift smooth-transition">
+              <a 
+                href="https://wa.me/6281938057991" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center md:justify-start hover-lift smooth-transition hover:text-white/70"
+              >
                 <FiPhone size={16} className="mr-3 text-white/80 flex-shrink-0" />
-                <span className="text-white/90 text-sm md:text-sm">??</span>
-              </div>
-              <div className="flex items-center justify-center md:justify-start hover-lift smooth-transition">
+                <span className="text-white/90 text-sm md:text-sm">081938057991</span>
+              </a>
+              <a 
+                href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=hoed.09@gmail.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center md:justify-start hover-lift smooth-transition hover:text-white/70"
+              >
                 <FiMail size={16} className="mr-3 text-white/80 flex-shrink-0" />
-                <span className="text-white/90 text-sm md:text-sm break-all">??</span>
-              </div>
+                <span className="text-white/90 text-sm md:text-sm break-all">hoed.09@gmail.com</span>
+              </a>
             </div>
           </div>
         </div>
