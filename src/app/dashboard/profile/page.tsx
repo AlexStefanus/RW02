@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import PageHeader from "@/component/common/PageHeader";
@@ -157,6 +157,48 @@ const ProfilePage = () => {
               </div>
             </div>
           </form>
+        </div>
+
+        {/* Taman Baca Rangkah Section */}
+        <div className="bg-white app-card shadow-sm border border-gray-100 mt-6">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 bg-[#00a753] rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Taman Baca Rangkah</h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Dapatkan akses menuju E-Book dari Taman Baca Rangkah
+              </p>
+              <a
+                href="https://drive.google.com/drive/folders/1tAyrTev5Yy0umxxTFPxOXIERtT0VQ-hf?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#00a753] text-white text-sm font-medium rounded-md hover:bg-[#008f47] transition-colors smooth-transition"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Buka Taman Baca
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 

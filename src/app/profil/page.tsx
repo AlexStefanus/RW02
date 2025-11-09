@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "@/component/landing-page/Header";
 import Footer from "@/component/landing-page/Footer";
-import { VisiSection, MisiSection, SmartBerkahSection, PetaLokasiSection } from "@/component/profil";
+import { VisiSection, MisiSection, SmartBerkahSection, PetaLokasiSection, TamanBacaSection } from "@/component/profil";
 import usePageVisitor from "@/hooks/usePageVisitor";
 
 const ProfilPage = () => {
@@ -44,6 +44,9 @@ const ProfilPage = () => {
 
 
         <PetaLokasiSection />
+
+
+        <TamanBacaSection />
       </div>
 
       <Footer />
