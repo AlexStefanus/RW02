@@ -129,18 +129,6 @@ INSERT INTO storage_stats (total_size, file_count)
 VALUES (0, 0)
 ON CONFLICT DO NOTHING;
 
--- ============================================
--- STORAGE BUCKETS
--- ============================================
--- Catatan: Bucket harus dibuat manual di Supabase Dashboard
--- atau menggunakan Supabase CLI dengan perintah:
--- 
--- 1. Buat bucket 'articles' untuk gambar berita
--- 2. Buat bucket 'gallery-images' untuk galeri foto
--- 3. Buat bucket 'structure' untuk foto struktur organisasi
--- 
--- Pastikan bucket bersifat PUBLIC agar gambar bisa diakses
-
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE articles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE announcements ENABLE ROW LEVEL SECURITY;
