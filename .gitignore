@@ -28,13 +28,8 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (jangan upload file yang berisi API keys!)
+# env
 .env
-.env*.local
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # vercel
 .vercel
@@ -61,5 +56,5 @@ Thumbs.db
 *.tmp
 .cache/
 
-# documentation (custom untuk project ini)
+# documentation
 README.md
